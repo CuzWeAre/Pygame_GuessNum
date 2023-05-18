@@ -50,14 +50,13 @@ class GameManager:
                 if self.stats.hints_left >0:
                     self._check_number(mouse_pos)
                 else:
-                    self._check_number()
+                    self._check_array(mouse_pos)
 
     def _check_number(self,mouse_pos):
         """在玩家点击数字时切换数字"""
         for number in self.numbers:
             if number.rect.collidepoint(mouse_pos):
                 if self.stats.hints_left <= 0:
-                    self.numbers.update(self)
                     print('No More Hints!')
                     break
                 elif not number.is_cued:
@@ -67,8 +66,11 @@ class GameManager:
 
     def _check_array(self,mouse_pos):
         """在玩家点击箭头时执行操作"""
-
-
+        for array in self.arrays:
+            if array.rect.collidepoint(mouse_pos):
+                self.numbers.update(self)
+                return 0
+        print('No More Hints!')
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕。"""
         self.screen.fill(self.settings.bg_color)
@@ -99,7 +101,6 @@ class GameManager:
             self.arrays.add(array)
         array = Array(self, (3, 3), 'Up-Left Arrow', i)
         self.arrays.add(array)
-        pass
 
 
 if __name__ == '__main__':
