@@ -1,3 +1,5 @@
+from pygame import image
+
 class Settings:
     """游戏设置"""
     def __init__(self):
@@ -7,6 +9,10 @@ class Settings:
         self.bg_color = (230, 230, 230)
         self.hints_limit = 2   #提示次数
         self.size = 3
+        self.user_picture = image.load('images/user.bmp')
+        self.user_picture_rect = self.user_picture.get_rect()
+        self.user_picture_rect.x, self.user_picture_rect.y = (512,0)
+
 
         self.dic_award = {
         6: 10000,
