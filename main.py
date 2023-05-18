@@ -39,12 +39,13 @@ class GameManager:
         self._update_screen()
         while True:
             self._check_events()
-            # self._update_screen()
+            self._update_screen()
 
     def _check_events(self):
         """响应键盘和鼠标事件"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print(1)
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_LEFT:
                 mouse_pos = pygame.mouse.get_pos()
@@ -108,18 +109,19 @@ class GameManager:
         array = Array(self, (4, 0), 'Up-Right Arrow', 8)
         self.arrays.add(array)
 
-    # def _creat_text(self):
-    #     """创建文本说明游戏规则及得分情况"""
-    #     self.screen = game.screen
-    #     self.font = pygame.font.SysFont("Microsoft YaHei", 30)  # 创建字体对象，设置字体和大小
-    #
-    #     # 渲染游戏规则文本
-    #     rule_text = self.font.render('游戏规则：这里是游戏规则的内容', True, (0, 0, 0))
-    #     self.screen.blit(rule_text, (128, 512))  # 绘制到屏幕上，设置位置
-    #
-    #     # 渲染得分文本
-    #     score_text = self.font.render('得分情况：这里是得分情况的内容', True, (0, 0, 0))
-    #     self.screen.blit(score_text, (10, 50))
+    def _creat_text(self):
+        """创建文本说明游戏规则及得分情况"""
+        pass
+        # self.screen = game.screen
+        # self.font = pygame.font.SysFont("Microsoft YaHei", 30)  # 创建字体对象，设置字体和大小
+        #
+        # # 渲染游戏规则文本
+        # rule_text = self.font.render('游戏规则：这里是游戏规则的内容', True, (0, 0, 0))
+        # self.screen.blit(rule_text, (128, 512))  # 绘制到屏幕上，设置位置
+        #
+        # # 渲染得分文本
+        # score_text = self.font.render('得分情况：这里是得分情况的内容', True, (0, 0, 0))
+        # self.screen.blit(score_text, (10, 50))
 
 
 if __name__ == '__main__':
