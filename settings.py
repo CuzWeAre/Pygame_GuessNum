@@ -2,8 +2,8 @@ class Settings:
     """游戏设置"""
     def __init__(self):
         """初始化游戏设置"""
-        self.screen_width = 512
-        self.screen_height = 512
+        self.screen_width = 640
+        self.screen_height = 640
         self.bg_color = (230, 230, 230)
         self.hints_limit = 2   #提示次数
         self.size = 3

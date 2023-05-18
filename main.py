@@ -83,7 +83,7 @@ class GameManager:
 
     def _creat_numbers(self):
         """创建全部数字"""
-        numbers_pos_temp = [[(row, column) for column in range(self.settings.size)] for row in range(self.settings.size)]
+        numbers_pos_temp = [[(row, column) for column in range(1, self.settings.size+1)] for row in range(1, self.settings.size+1)]
         numbers_pos = []
         for i in numbers_pos_temp:
             numbers_pos += i
@@ -95,12 +95,14 @@ class GameManager:
     def _creat_arrays(self):
         """创建全部箭头"""
         for i in range(1,4):
-            array = Array(self, (i-1, 3), 'Left Arrow', i)
+            array = Array(self, (i, 0), 'Right Arrow', i)
             self.arrays.add(array)
         for i in range(4,7):
-            array = Array(self, (3, i-4), 'Up Arrow', i)
+            array = Array(self, (0, i-3), 'Down Arrow', i)
             self.arrays.add(array)
-        array = Array(self, (3, 3), 'Up-Left Arrow', 7)
+        array = Array(self, (0, 0), 'Down-Right Arrow', 7)
+        self.arrays.add(array)
+        array = Array(self, (4, 0), 'Up-Right Arrow', 8)
         self.arrays.add(array)
 
 

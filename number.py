@@ -16,9 +16,10 @@ class Number(Sprite):
         self.rect = self.image.get_rect()
 
         #记录每个数字的相对位置和绝对位置
-        self.row, self.column = pos
-        self.rect.x = self.column * pixels
-        self.rect.y = self.row * pixels
+        self.row = pos[0]-1
+        self.column = pos[1]-1
+        self.rect.x = pos[1] * pixels
+        self.rect.y = pos[0] * pixels
 
     #功能已被sprite类自带draw方法替代
     # def blitme(self):
