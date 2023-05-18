@@ -53,7 +53,7 @@ class Canvas:
         self.map_clue[pos_temp[0]][pos_temp[1]] = self.map[pos_temp[0]][pos_temp[1]]
         # self.show('map_clue')
 
-    def direct_sum(self, direct):
+    def sum_direct(self, direct):
         """计算方向上数字的全部和"""
         ans = 0
         if direct < 4:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         canvas.show('map_clue')
 
     direct = int(input(' 你想从哪个方向刮开彩票？\n1 至 3 表示选择横向的第一行、第二行、第三行，4 至 6 表示纵向的第一列、第二列、第三列，7、8分别表示左上到右下的主对角线和右上到左下的副对角线。\n'))
-    ans = canvas.direct_sum(direct)
+    ans = canvas.sum_direct(direct)
 
     canvas.show('map')
     print(f'你一共获得了{ans}点，奖励{dic_award[ans]}分！')

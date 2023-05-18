@@ -69,6 +69,7 @@ class GameManager:
         for array in self.arrays:
             if array.rect.collidepoint(mouse_pos):
                 self.numbers.update(self)
+                print(self.canvas.sum_direct(array.number))
                 return 0
         print('No More Hints!')
     def _update_screen(self):
@@ -99,7 +100,7 @@ class GameManager:
         for i in range(4,7):
             array = Array(self, (3, i-4), 'Up Arrow', i)
             self.arrays.add(array)
-        array = Array(self, (3, 3), 'Up-Left Arrow', i)
+        array = Array(self, (3, 3), 'Up-Left Arrow', 7)
         self.arrays.add(array)
 
 
