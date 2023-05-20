@@ -1,15 +1,15 @@
-import pygame, sys
+import pygame
 from pygame.locals import *
 
 
-class Congrats():
+class Congrats:
     def __init__(self, game):
         # 游戏祝贺窗口
-        self.father_screen = game.screen
+        # self.father_screen = game.screen
         self.screen = pygame.display.set_mode((500, 400))
         pygame.display.set_caption("恭喜！")
 
-        self.font = pygame.font.SysFont("Microsoft YaHei", 25, bold = True)
+        self.font = pygame.font.SysFont("Microsoft YaHei", 25, bold=True)
         if game.settings.award:
             game.score = game.settings.dic_award[game.score]
         text = f"您一共获得了 {game.score} 分，手气斐然啊！"  # 替换为你的游戏规则文本
@@ -17,7 +17,6 @@ class Congrats():
         text_rect = text_render.get_rect()
         text_rect.y = 50
         text_rect.centerx = self.screen.get_rect().centerx
-
 
         # 设置屏幕颜色
         self.screen.fill((255, 255, 255))
@@ -36,10 +35,3 @@ class Congrats():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     return
-
-
-if __name__ == '__main__':
-    pygame.init()
-    a = Congrats(1)
-
-

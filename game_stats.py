@@ -1,7 +1,7 @@
 class GameStats:
     """跟踪游戏的统计信息"""
 
-    def __init__(self,game):
+    def __init__(self, game):
         """初始化统计信息"""
         self.settings = game.settings
         self.reset_stats()

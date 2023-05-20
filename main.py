@@ -1,4 +1,5 @@
-import sys, pygame
+import sys
+import pygame
 from random import randint
 from settings import Settings
 from number import Number
@@ -7,8 +8,9 @@ from logic import Canvas
 from myarray import Array
 # from gametext import GameText
 from congrats import Congrats
-# import threading
 
+
+# import threading
 
 
 class GameManager:
@@ -28,16 +30,12 @@ class GameManager:
         self.arrays = pygame.sprite.Group()
         self.canvas = Canvas(self.settings.size)
 
-
-
-
-
     def run_game(self):
         """开始游戏的主循环"""
         self._creat_arrays()
         self._creat_numbers()
 
-        self.numbers.sprites()[randint(1,self.settings.size**2)].cueing(self)
+        self.numbers.sprites()[randint(1, self.settings.size ** 2)].cueing(self)
 
         self._update_screen()
         while True:
@@ -56,7 +54,7 @@ class GameManager:
                 else:
                     self._check_array(mouse_pos)
 
-    def _check_number(self,mouse_pos):
+    def _check_number(self, mouse_pos):
         """在玩家点击数字时切换数字"""
         for number in self.numbers:
             if number.rect.collidepoint(mouse_pos) and not number.is_cued:
@@ -65,19 +63,20 @@ class GameManager:
                 self.stats.hints_left -= 1
                 break
 
-    def _check_array(self,mouse_pos):
+    def _check_array(self, mouse_pos):
         """在玩家点击箭头时执行操作"""
         for array in self.arrays:
             if array.rect.collidepoint(mouse_pos):
                 self.numbers.update(self)
                 self._update_screen()
                 self.score = self.canvas.sum_direct(array.number)
-                a = Congrats(self)
+                Congrats(self)
                 self.screen = pygame.display.set_mode(
                     (self.settings.screen_width, self.settings.screen_height))
                 self._update_screen()
                 return 0
         print('No More Hints!')
+
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕。"""
         self.screen.fill(self.settings.bg_color)
@@ -91,7 +90,8 @@ class GameManager:
 
     def _creat_numbers(self):
         """创建全部数字"""
-        numbers_pos_temp = [[(row, column) for column in range(1, self.settings.size+1)] for row in range(1, self.settings.size+1)]
+        numbers_pos_temp = [[(row, column) for column in range(1, self.settings.size + 1)] for row in
+                            range(1, self.settings.size + 1)]
         numbers_pos = []
         for i in numbers_pos_temp:
             numbers_pos += i
@@ -102,11 +102,11 @@ class GameManager:
 
     def _creat_arrays(self):
         """创建全部箭头"""
-        for i in range(1,4):
+        for i in range(1, 4):
             array = Array(self, (i, 0), 'Right Arrow', i)
             self.arrays.add(array)
-        for i in range(4,7):
-            array = Array(self, (0, i-3), 'Down Arrow', i)
+        for i in range(4, 7):
+            array = Array(self, (0, i - 3), 'Down Arrow', i)
             self.arrays.add(array)
         array = Array(self, (0, 0), 'Down-Right Arrow', 7)
         self.arrays.add(array)
@@ -129,6 +129,6 @@ class GameManager:
 
 
 if __name__ == '__main__':
-    #创建游戏实例并运行游戏
+    # 创建游戏实例并运行游戏
     game = GameManager()
     game.run_game()

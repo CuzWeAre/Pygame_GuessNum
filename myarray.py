@@ -1,10 +1,11 @@
 from pygame import image
 from pygame.sprite import Sprite
 
+
 class Array(Sprite):
     """管理箭头的类"""
 
-    def __init__(self, game, pos: tuple, array_type: str, number: int, pixels = 128):
+    def __init__(self, game, pos: tuple, array_type: str, number: int, pixels=128):
         """初始化箭头并设置其初始位置，pos接受绝对位置"""
         super().__init__()
         self.screen = game.screen
