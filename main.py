@@ -5,8 +5,11 @@ from number import Number
 from game_stats import GameStats
 from logic import Canvas
 from myarray import Array
-from gametext import GameText
+# from gametext import GameText
 from congrats import Congrats
+# import threading
+
+
 
 class GameManager:
     """管理游戏资源和行为的类"""
@@ -39,13 +42,11 @@ class GameManager:
         self._update_screen()
         while True:
             self._check_events()
-            self._update_screen()
 
     def _check_events(self):
         """响应键盘和鼠标事件"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                print(1)
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_LEFT:
                 mouse_pos = pygame.mouse.get_pos()
@@ -71,7 +72,10 @@ class GameManager:
                 self.numbers.update(self)
                 self._update_screen()
                 self.score = self.canvas.sum_direct(array.number)
-                Congrats(self.settings.dic_award[self.score])
+                a = Congrats(self)
+                self.screen = pygame.display.set_mode(
+                    (self.settings.screen_width, self.settings.screen_height))
+                self._update_screen()
                 return 0
         print('No More Hints!')
     def _update_screen(self):
