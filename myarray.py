@@ -13,7 +13,7 @@ class Array(Sprite):
         self.number = number
 
         # 加载图像并获取其外接矩形
-        self.image = image.load(f'images/{array_type}.bmp')
+        self.image = image.load(f'resource/images/{array_type}.bmp')
         self.rect = self.image.get_rect()
 
         # 记录每个箭头的相对位置和绝对位置

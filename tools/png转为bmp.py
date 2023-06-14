@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 folder_path = "F:\Desktop\新建文件夹"  # 替换为实际的文件夹路径
-target_format = ".bmp"
+target_format = "bmp"
 
 def convert_to_bmp_with_transparency(image):
     # 创建一个新的RGBA模式的图像，大小与原图像相同
@@ -25,7 +25,7 @@ def convert_to_bmp_with_transparency(image):
     return new_image
 
 for filename in os.listdir(folder_path):
-    if filename.endswith(".png"):
+    if filename.endswith(".jpg"):
         # 构建输入文件的完整路径
         input_path = os.path.join(folder_path, filename)
 
@@ -36,7 +36,7 @@ for filename in os.listdir(folder_path):
         image = Image.open(input_path).convert("RGBA")
         new_image = convert_to_bmp_with_transparency(image)
         
-        # new_image = new_image.resize((128,128))
+        new_image = new_image.resize((128,128))
         
         new_image.save(output_path, format=target_format)
 

@@ -19,10 +19,12 @@ class GameManager:
     def __init__(self):
         """初始化游戏并创建游戏资源"""
         pygame.init()
+        pygame.mixer.init()
         self.settings = Settings()
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("刮刮乐")
+
 
         # self.number = Number(self)
         self.stats = GameStats(self)
@@ -38,6 +40,11 @@ class GameManager:
         self.numbers.sprites()[randint(1, self.settings.size ** 2)].cueing(self)
 
         self._update_screen()
+
+        pygame.mixer.music.load(self.settings.bgm)
+        pygame.mixer.music.play(-1)  # -1表示循环播放，如果只播放一次，可以使用0作为参数
+        pygame.mixer.music.set_volume(self.settings.bgm_volumn)
+
         while True:
             self._check_events()
 
@@ -115,17 +122,17 @@ class GameManager:
 
     def _creat_text(self):
         """创建文本说明游戏规则及得分情况"""
-        pass
-        # self.screen = game.screen
-        # self.font = pygame.font.SysFont("Microsoft YaHei", 30)  # 创建字体对象，设置字体和大小
-        #
-        # # 渲染游戏规则文本
-        # rule_text = self.font.render('游戏规则：这里是游戏规则的内容', True, (0, 0, 0))
-        # self.screen.blit(rule_text, (128, 512))  # 绘制到屏幕上，设置位置
-        #
-        # # 渲染得分文本
-        # score_text = self.font.render('得分情况：这里是得分情况的内容', True, (0, 0, 0))
-        # self.screen.blit(score_text, (10, 50))
+        self.screen = game.screen
+        self.font = pygame.font.SysFont("Microsoft YaHei", 30)  # 创建字体对象，设置字体和大小
+
+        # 渲染游戏规则文本
+        rule_text = self.font.render('~~还在不断完善中~~', True, (0, 0, 0))
+        self.screen.blit(rule_text, (128+20, 520))  # 绘制到屏幕上，设置位置
+
+        # 渲染得分文本
+        self.font = pygame.font.SysFont("Microsoft YaHei", 21)
+        score_text = self.font.render('https://github.com/CuzWeAre/Pygame_GuessNum', True, (0, 0, 0))
+        self.screen.blit(score_text, (128, 512+64))
 
 
 if __name__ == '__main__':
